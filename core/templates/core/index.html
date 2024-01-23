@@ -1,0 +1,355 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block body %}
+<div class="min-h-screen dark:bg-gray-900">
+  {% include 'core/nav.html' %}
+  <div class="mx-auto max-w-[1200px] space-y-4">
+    <div class="text-center">
+      <h1
+        class="
+          inline-block bg-gradient-to-r from-red-600 via-indigo-600
+          to-blue-700 bg-clip-text
+          text-8xl font-extrabold leading-relaxed text-transparent
+          shadow-white
+          drop-shadow-md
+        "
+      >
+        Django Kickstarter
+      </h1>
+    </div>
+
+    <div>
+      {% if user.is_authenticated %}
+        <div class="max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800">
+          <div class="flex justify-end px-4 pt-4">
+            <button
+              id="dropdownButton"
+              data-dropdown-toggle="dropdown"
+              class="inline-block rounded-lg p-1.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+              type="button"
+            >
+              <span class="sr-only">Open dropdown</span>
+              <svg
+                class="h-5 w-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 16 3"
+              >
+                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+              </svg>
+            </button>
+            <!-- Dropdown menu -->
+            <div
+              id="dropdown"
+              class="z-10 hidden w-44 list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700"
+            >
+              <ul class="py-2" aria-labelledby="dropdownButton">
+                <li>
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >Edit</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >Export Data</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >Delete</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex flex-col items-center pb-10">
+            <img
+              class="mb-3 h-24 w-24 rounded-full shadow-lg"
+              src="https://fastly.picsum.photos/id/619/300/300.jpg?hmac=qFcML5AJRd-Ov5ASMVAPHZwwet8tRtGTC6Mg8_pfcJM"
+              alt="User Avatar Image"
+            >
+            <h5
+              class="
+                mb-1 text-xl font-medium text-gray-900
+                dark:text-white
+              "
+            >
+              {{ user }}
+            </h5>
+            <span class="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
+            <div class="mt-4 flex md:mt-6">
+              <a
+                href="/accounts/profile/"
+                class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                View Profile
+              </a>
+              <form
+                method="post"
+                action="{% url 'account_logout' %}"
+              >
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="ms-3 inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                >
+                  Sign Out
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      {% else %}
+        <div class="mb-12 text-center">
+          <a
+            type="button"
+            class="
+              mb-2 me-2 rounded-lg
+              bg-blue-700 px-5 py-2.5 text-sm font-medium text-white
+              hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600
+              dark:hover:bg-blue-700 dark:focus:ring-blue-800
+            "
+            href="{% url 'account_login' %}"
+          >
+            Log in
+          </a>
+
+          <a
+            type="button"
+            class="
+              mb-2 me-2 rounded-lg
+              bg-blue-700 px-5 py-2.5 text-sm font-medium text-white
+              hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600
+              dark:hover:bg-blue-700 dark:focus:ring-blue-800
+            "
+            href="{% url 'account_signup' %}"
+          >
+            Sign up
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div
+        class="
+          space-y-4 rounded-lg border border-gray-200 bg-white p-6
+          shadow dark:border-gray-700 dark:bg-gray-800
+        "
+      >
+        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Feature List</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">
+          <ul class="max-w-md list-inside space-y-1 text-gray-500 dark:text-gray-400">
+            <li>
+              <div class="flex items-center">
+                <svg
+                  class="me-2 h-3.5 w-3.5 flex-shrink-0 text-green-500 dark:text-green-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                </svg>
+                Django
+              </div>
+              <ol class="mt-2 list-inside list-decimal space-y-1 ps-5">
+                <li class="flex items-center">
+                  <svg
+                    class="me-2 h-3.5 w-3.5 flex-shrink-0 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                  </svg>
+                  django-allauth
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="me-2 h-3.5 w-3.5 flex-shrink-0 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                  </svg>
+                  django-compressor
+                </li>
+              </ol>
+            </li>
+
+            <li class="flex items-center">
+              <svg
+                class="me-2 h-3.5 w-3.5 flex-shrink-0 text-green-500 dark:text-green-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+              </svg>
+              Htmx
+            </li>
+
+            <li class="flex items-center">
+              <svg
+                class="me-2 h-3.5 w-3.5 flex-shrink-0 text-green-500 dark:text-green-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+              </svg>
+              Tailwind CSS
+            </li>
+          </ul>
+        </p>
+        <a
+          href="#"
+          class="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Read more
+          <svg
+            class="ms-2 h-3.5 w-3.5 rtl:rotate-180"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+          </svg>
+        </a>
+      </div>
+
+      <div
+        class="
+          space-y-8 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700
+          dark:bg-gray-800
+        "
+      >
+        <div>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Enable social login with Django Allauth
+          </h5>
+        </div>
+        <div>
+          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <ol>
+              <li class="font-semibold text-white">
+                <a
+                  class="text-blue-300"
+                  href="/admin/socialaccount/socialapp/add/"
+                >
+                  Click here to configure social apps
+                </a>
+              </li>
+            </ol>
+          </p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a
+            href="https://docs.allauth.org/en/latest/installation/quickstart.html"
+            class="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Allauth Quickstart
+            <svg
+              class="ms-2 h-3.5 w-3.5 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            >
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+          </a>
+          <a
+            href="https://docs.allauth.org/en/latest/socialaccount/providers/github.html"
+            class="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Github Provider Docs
+            <svg
+              class="ms-2 h-3.5 w-3.5 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            >
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+          </a>
+          <a
+            href="https://docs.allauth.org/en/latest/socialaccount/providers/google.html"
+            class="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Google Provider Docs
+            <svg
+              class="ms-2 h-3.5 w-3.5 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            >
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="py-8 text-lg font-semibold text-white">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et enim fringilla tellus elementum congue
+      pretium rutrum velit. Quisque nunc magna, efficitur quis ullamcorper quis, efficitur a turpis. Aenean augue mi,
+      ultrices eget consectetur molestie, suscipit vel elit. In hac habitasse platea dictumst. Nunc a fermentum lectus.
+      Proin nec turpis eu mi hendrerit sollicitudin elementum egestas augue. Duis vitae ex lacinia massa cursus
+      tincidunt sit amet eget nibh. Cras fringilla commodo nunc eu ultricies. Maecenas finibus nunc a egestas euismod.
+      Quisque in elit elementum, suscipit nisl non, ultrices metus. Class aptent taciti sociosqu ad litora torquent per
+      conubia nostra, per inceptos himenaeos. Etiam malesuada vehicula diam scelerisque egestas. Fusce porta, sem quis
+      tempor porttitor, lorem felis sodales lacus, vel laoreet ex urna non orci. Sed in turpis ultricies neque sagittis
+      sagittis id congue nulla. Integer finibus est sit amet rutrum semper.
+    </p>
+
+    <div
+      href="#"
+      class="block rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800"
+    >
+      <h5 class="mb-8 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Powered by</h5>
+      <div class="mx-auto flex w-fit gap-4">
+        <a href="https://www.djangoproject.com/">
+          <img
+            class="h-12 w-auto rounded-md border-2 border-gray-700"
+            src="{% static 'src/images/django-logo.svg' %}"
+            alt="Workflow"
+          >
+        </a>
+        <a href="https://htmx.org/">
+          <img
+            class="h-12 w-auto rounded-md border-2 border-gray-700"
+            src="{% static 'src/images/htmx-logo.svg' %}"
+            alt="Workflow"
+          >
+        </a>
+        <a href="https://tailwindcss.com/">
+          <img
+            class="h-12 w-auto rounded-md border-2 border-gray-700 p-2"
+            src="{% static 'src/images/tailwindcss-logo.svg' %}"
+            alt="Workflow"
+          >
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

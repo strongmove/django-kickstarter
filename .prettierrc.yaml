@@ -1,0 +1,18 @@
+tabWidth: 2
+printWidth: 120
+twigPrintWidth: 120
+twigMultiTags: 
+  - "nav,endnav"
+  - "switch,case,default,endswitch"
+  - "ifchildren,endifchildren"
+  - "cache,endcache"
+twigAlwaysBreakObjects: false
+twigSingleQuote: false
+overrides: 
+  - files: "*.html"
+    options: 
+      parser: "liquid-html"
+plugins: 
+  - "@shopify/prettier-plugin-liquid"
+  - prettier-plugin-django
+  - prettier-plugin-tailwindcss
