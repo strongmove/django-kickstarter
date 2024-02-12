@@ -164,7 +164,7 @@ def _add_app(manifest):
 DJANGO_DEFAULT_SETTINGS = {
     "name": "misc",
     "overrides": {
-        "DEBUG": True,
+        "DEBUG": os.getenv("DJANGO_DEBUG") and True,
         "ALLOWED_HOSTS": ["*"],
         "MIDDLEWARE": [
             "django.middleware.gzip.GZipMiddleware",
