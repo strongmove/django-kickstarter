@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-b0itubj4*gv#(rn7c6#=mgw7@k6-d&0hq*vw8+2l#2#13c#vpu"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -156,6 +156,8 @@ def _add_app(manifest):
                 g[key].update(value)
             elif isinstance(value, set):
                 g[key].update(value)
+            else:
+                g[key] = value
         else:
             g[key] = value
 
@@ -164,7 +166,7 @@ def _add_app(manifest):
 DJANGO_DEFAULT_SETTINGS = {
     "name": "misc",
     "overrides": {
-        "DEBUG": os.getenv("DJANGO_DEBUG") and True,
+        "DEBUG": os.getenv("DJANGO_DEBUG", "true").lower() == "true" and True,
         "ALLOWED_HOSTS": ["*"],
         "MIDDLEWARE": [
             "django.middleware.gzip.GZipMiddleware",
