@@ -1,23 +1,15 @@
 {
-  "typescript": {
-  },
-  "json": {
-  },
-  "markdown": {
-  },
-  "toml": {
-  },
-  "dockerfile": {
-  },
-  "biome": {
-  },
-  "ruff": {
-  },
-  "jupyter": {
-  },
+  "typescript": {},
+  "json": {},
+  "markdown": {},
+  "toml": {},
+  "dockerfile": {},
+  "biome": {},
+  "ruff": {},
+  "jupyter": {},
   "excludes": [
     "**/node_modules",
-    "**/*-lock.json"
+    "**/*-lock.json",
   ],
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.89.3.wasm",
@@ -27,6 +19,6 @@
     "https://plugins.dprint.dev/dockerfile-0.3.0.wasm",
     "https://plugins.dprint.dev/biome-0.3.2.wasm",
     "https://plugins.dprint.dev/ruff-0.1.2.wasm",
-    "https://plugins.dprint.dev/jupyter-0.1.3.wasm"
-  ]
+    "https://plugins.dprint.dev/jupyter-0.1.3.wasm",
+  ],
 }
