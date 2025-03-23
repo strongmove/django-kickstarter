@@ -302,6 +302,8 @@ DJANGO_CORS_HEADERS_SETTINGS = {
 }
 _add_app(DJANGO_CORS_HEADERS_SETTINGS)
 
+CSRF_TRUSTED_ORIGINS = ["https://notes.davidkim.cc"]
+
 
 # django-htmx
 DJANGO_HTMX_SETTINGS = {
