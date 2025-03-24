@@ -1,3 +1,5 @@
+Django
+PyJWT==2.8.0
 asgiref==3.7.2
 certifi==2023.11.17
 cffi==1.16.0
@@ -10,12 +12,11 @@ django-appconf==1.0.6
 django-browser-reload==1.12.1
 django-compressor==4.4
 django-htmx==1.17.2
-Django==4.2.9
+django-stubs
 idna==3.6
 oauthlib==3.2.2
 psycopg2-binary==2.9.9
 pycparser==2.21
-PyJWT==2.8.0
 pytest-django==4.8.0
 pytest==8.2.1
 python3-openid==3.2.0
