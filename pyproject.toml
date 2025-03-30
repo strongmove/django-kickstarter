@@ -1,2 +1,6 @@
 [tool.ruff.lint]
 ignore = ["E501"]
+
+[tool.pytest.ini_options]
+# MUST INSTALL pip install pytest-env for neotest-python to work
+env = ["DJANGO_SETTINGS_MODULE=project.settings"]

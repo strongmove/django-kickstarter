@@ -20,6 +20,7 @@ psycopg2-binary
 pycparser
 pytest
 pytest-django
+pytest-env
 python3-openid
 rcssmin
 requests
