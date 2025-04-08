@@ -196,6 +196,7 @@ CORE_SETTINGS = {
     "installed_apps": ["core"],
 }
 _add_app(CORE_SETTINGS)
+ASGI_APPLICATION = "project.asgi.application"
 
 
 # Custom User Model
