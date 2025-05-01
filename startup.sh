@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 rm -rf ./db.sqlite3
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete && find . -path "*/migrations/*.pyc" -delete
 
@@ -12,6 +11,8 @@ python ./manage.py compress --force
 
 python ./manage.py makemigrations core accounts && python ./manage.py migrate
 python ./manage.py collectstatic --noinput
+
+rm -rf .git
 git init
 git add .
 git commit -m "Initial commit"
