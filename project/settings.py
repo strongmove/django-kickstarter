@@ -172,17 +172,17 @@ DJANGO_DEFAULT_SETTINGS = {
         "MIDDLEWARE": [
             "django.middleware.gzip.GZipMiddleware",
         ],
-        "DATABASES": {
-            "default": {
-                "ENGINE": "django.db.backends.postgresql",
-                "HOST": os.getenv("DB_HOST"),
-                "NAME": os.getenv("DB_NAME"),
-                "PORT": os.getenv("DB_PORT"),
-                "USER": os.getenv("DB_USER"),
-                "PASSWORD": os.getenv("DB_PASSWORD"),
-                "DISABLE_SERVER_SIDE_CURSORS": True,
-            },
-        },
+        # "DATABASES": {
+        #     "default": {
+        #         "ENGINE": "django.db.backends.postgresql",
+        #         "HOST": os.getenv("DB_HOST"),
+        #         "NAME": os.getenv("DB_NAME"),
+        #         "PORT": os.getenv("DB_PORT"),
+        #         "USER": os.getenv("DB_USER"),
+        #         "PASSWORD": os.getenv("DB_PASSWORD"),
+        #         "DISABLE_SERVER_SIDE_CURSORS": True,
+        #     },
+        # },
         "STATICFILES_DIRS": (BASE_DIR / "static",),
         "STATIC_ROOT": BASE_DIR / "staticfiles" / "static",
     },
