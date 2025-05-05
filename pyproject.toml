@@ -27,6 +27,7 @@ dependencies = [
   "django-stubs (>=5.2.0,<6.0.0)",
   "strawberry-graphql-django (>=0.59.0,<0.60.0)",
   "django-choices-field (>=2.3.0,<3.0.0)",
+  "watchdog[watchmedo] (>=6.0.0,<7.0.0)",
 ]
 
 [build-system]
