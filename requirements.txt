@@ -27,6 +27,8 @@ requests
 requests-oauthlib
 rjsmin
 sqlparse
+strawberry-graphql
+strawberry-graphql-django
 typing_extensions
 urllib3
 watchdog[watchmedo]
