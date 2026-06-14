@@ -20,7 +20,7 @@ end
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete; and find . -path "*/migrations/*.pyc" -delete
 rm -rf ./db.sqlite3
 
-poetry install
+pip install -r requirements.txt
 bun i
 bunx tailwindcss -i ./static/src/input.css -o ./static/src/output.css
 
